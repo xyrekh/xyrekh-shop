@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XYREKH SHOP</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0a1a;
+  --bg2:#130e22;
+  --bg3:#1a1230;
+  --bg4:#221840;
+  --card:#1c1535;
+  --border:#2e2050;
+  --purple:#8b5cf6;
+  --purple2:#7c3aed;
+  --purple3:#a78bfa;
+  --pink:#ec4899;
+  --text:#f0eaff;
+  --text2:#9d8ec5;
+  --green:#10b981;
+  --red:#f43f5e;
+  --yellow:#fbbf24;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* noise overlay */
+body::after{content:’’;position:fixed;inset:0;background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.03’/%3E%3C/svg%3E”);pointer-events:none;z-index:0;opacity:.4;}
+
+/* mesh bg */
+body::before{content:’’;position:fixed;inset:0;
+background:
+radial-gradient(ellipse 600px 400px at 80% 10%, rgba(139,92,246,0.15) 0%, transparent 70%),
+radial-gradient(ellipse 500px 400px at 10% 80%, rgba(236,72,153,0.08) 0%, transparent 70%),
+radial-gradient(ellipse 400px 300px at 50% 50%, rgba(124,58,237,0.06) 0%, transparent 70%);
+pointer-events:none;z-index:0;animation:meshMove 12s ease-in-out infinite alternate;}
+@keyframes meshMove{0%{opacity:.8}100%{opacity:1;background-position:20px -20px;}}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:100;background:rgba(14,10,26,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(–border);}
+.hdr{max-width:1300px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.logo{font-family:‘Montserrat’,sans-serif;font-size:20px;font-weight:900;letter-spacing:2px;color:#fff;flex-shrink:0;display:flex;align-items:center;gap:6px;}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(–purple);display:inline-block;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(139,92,246,.4)}50%{box-shadow:0 0 0 6px rgba(139,92,246,0)}}
+
+.search-wrap{flex:1;min-width:0;order:3;flex-basis:100%;position:relative;}
+.search-wrap input{width:100%;background:var(–bg3);border:1.5px solid var(–border);border-radius:50px;padding:10px 16px 10px 42px;color:var(–text);font-family:‘Nunito’,sans-serif;font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s;}
+.search-wrap input:focus{border-color:var(–purple);box-shadow:0 0 0 3px rgba(139,92,246,.15);}
+.search-wrap input::placeholder{color:var(–text2);}
+.search-ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(–text2);font-size:16px;pointer-events:none;}
+
+.cart-btn{flex-shrink:0;margin-left:auto;background:var(–purple2);border:none;border-radius:50px;padding:10px 20px;color:#fff;font-family:‘Nunito’,sans-serif;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s;white-space:nowrap;}
+.cart-btn:hover{background:var(–purple);transform:translateY(-1px);}
+.cart-n{background:var(–pink);min-width:20px;height:20px;border-radius:10px;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;padding:0 5px;}
+
+@media(min-width:600px){
+.hdr{flex-wrap:nowrap;height:64px;padding:0 20px;}
+.search-wrap{order:2;flex-basis:auto;max-width:420px;}
+.cart-btn{margin-left:0;}
+}
+
+/* ── HERO BANNER ── */
+.hero{position:relative;z-index:1;overflow:hidden;}
+.hero-inner{max-width:1300px;margin:0 auto;padding:48px 20px 36px;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(–purple3);background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);border-radius:50px;padding:5px 14px;margin-bottom:18px;}
+.hero h1{font-family:‘Montserrat’,sans-serif;font-size:clamp(32px,7vw,64px);font-weight:900;line-height:1.05;margin-bottom:10px;color:#fff;}
+.hero h1 em{font-style:normal;color:var(–purple3);}
+.hero-sub{font-size:15px;color:var(–text2);margin-bottom:28px;max-width:400px;line-height:1.6;}
+.hero-stats{display:flex;gap:24px;flex-wrap:wrap;}
+.hero-stat{display:flex;flex-direction:column;}
+.hero-stat-n{font-family:‘Montserrat’,sans-serif;font-size:22px;font-weight:900;color:var(–purple3);}
+.hero-stat-l{font-size:11px;color:var(–text2);text-transform:uppercase;letter-spacing:1px;}
+
+/* ── CATEGORIES ── */
+.cats-wrap{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:0 16px 24px;}
+.cats-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+.cats-scroll::-webkit-scrollbar{display:none;}
+.cat{flex-shrink:0;padding:8px 18px;border-radius:50px;border:1.5px solid var(–border);background:var(–bg3);color:var(–text2);font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.cat.on,.cat:hover{background:var(–purple2);border-color:var(–purple2);color:#fff;}
+
+/* ── PRODUCTS ── */
+.prod-section{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:0 16px 60px;}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.sec-title{font-family:‘Montserrat’,sans-serif;font-size:18px;font-weight:900;letter-spacing:.5px;}
+.sec-count{font-size:12px;color:var(–text2);font-weight:600;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
+@media(max-width:480px){.grid{grid-template-columns:1fr 1fr;gap:10px;}}
+@media(max-width:320px){.grid{grid-template-columns:1fr;}}
+
+.pcard{background:var(–card);border:1.5px solid var(–border);border-radius:var(–r);overflow:hidden;cursor:pointer;transition:transform .25s,border-color .2s,box-shadow .2s;position:relative;}
+.pcard:hover{transform:translateY(-5px);border-color:rgba(139,92,246,.5);box-shadow:0 12px 40px rgba(139,92,246,.15);}
+.pcard-img{width:100%;height:170px;background:var(–bg4);display:flex;align-items:center;justify-content:center;font-size:38px;overflow:hidden;position:relative;}
+.pcard-img img{width:100%;height:170px;object-fit:cover;transition:transform .4s;}
+.pcard:hover .pcard-img img{transform:scale(1.06);}
+@media(max-width:480px){.pcard-img,.pcard-img img{height:130px;}}
+.new-badge{position:absolute;top:8px;left:8px;background:var(–purple2);color:#fff;font-size:9px;font-weight:800;letter-spacing:1px;padding:3px 9px;border-radius:50px;}
+.pcard-body{padding:12px;}
+.pcard-cat{font-size:10px;font-weight:700;color:var(–purple3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.pcard-name{font-weight:800;font-size:15px;line-height:1.2;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.pcard-desc{font-size:11px;color:var(–text2);margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5;}
+.pcard-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:6px;flex-wrap:wrap;}
+.pcard-price{font-family:‘Montserrat’,sans-serif;font-size:18px;font-weight:900;color:#fff;}
+.pcard-price small{font-size:11px;color:var(–text2);font-family:‘Nunito’,sans-serif;font-weight:600;}
+.pcard-stock{font-size:10px;color:var(–text2);margin-top:2px;}
+.add-btn{background:var(–purple2);border:none;border-radius:50px;color:#fff;font-family:‘Nunito’,sans-serif;font-size:11px;font-weight:800;padding:7px 13px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.add-btn:hover{background:var(–purple);transform:scale(1.04);}
+.add-btn.in{background:var(–green);}
+.add-btn:disabled{background:var(–bg4);color:var(–text2);cursor:not-allowed;}
+
+.empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(–text2);}
+.empty-ico{font-size:48px;margin-bottom:12px;opacity:.3;}
+.empty p{font-size:14px;line-height:1.6;}
+
+/* ── CART DRAWER ── */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s;}
+.overlay.on{opacity:1;pointer-events:all;}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:100vw;z-index:300;background:var(–bg2);border-left:1px solid var(–border);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .32s cubic-bezier(.25,.46,.45,.94);}
+.drawer.on{transform:translateX(0);}
+.drawer-hdr{padding:18px 20px;border-bottom:1px solid var(–border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.drawer-title{font-family:‘Montserrat’,sans-serif;font-size:17px;font-weight:900;letter-spacing:1px;}
+.drawer-close{background:none;border:none;color:var(–text2);font-size:22px;cursor:pointer;padding:4px;line-height:1;transition:color .2s;}
+.drawer-close:hover{color:var(–red);}
+.drawer-items{flex:1;overflow-y:auto;padding:12px;}
+
+.citem{display:flex;gap:10px;background:var(–card);border:1.5px solid var(–border);border-radius:10px;padding:10px;margin-bottom:8px;align-items:center;}
+.citem-img{width:52px;height:52px;border-radius:8px;flex-shrink:0;background:var(–bg4);display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;}
+.citem-img img{width:100%;height:100%;object-fit:cover;}
+.citem-info{flex:1;min-width:0;}
+.citem-name{font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.citem-price{font-family:‘Montserrat’,sans-serif;font-size:14px;font-weight:900;color:var(–purple3);}
+.citem-ctrl{display:flex;align-items:center;gap:5px;margin-top:4px;}
+.qbtn{width:24px;height:24px;border-radius:6px;border:1.5px solid var(–border);background:var(–bg3);color:var(–text);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
+.qbtn:hover{border-color:var(–purple);color:var(–purple);}
+.qval{font-family:‘Montserrat’,sans-serif;font-size:14px;font-weight:900;min-width:20px;text-align:center;}
+.cdel{background:none;border:none;color:var(–text2);font-size:16px;cursor:pointer;margin-left:auto;padding:4px;transition:color .2s;}
+.cdel:hover{color:var(–red);}
+
+.drawer-foot{padding:16px 20px;border-top:1px solid var(–border);flex-shrink:0;background:var(–bg3);}
+.cart-tot{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.cart-tot-lbl{color:var(–text2);font-size:13px;font-weight:700;}
+.cart-tot-val{font-family:‘Montserrat’,sans-serif;font-size:22px;font-weight:900;color:#fff;}
+.go-btn{width:100%;padding:14px;background:var(–purple2);border:none;border-radius:50px;color:#fff;font-family:‘Nunito’,sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.5px;transition:all .2s;}
+.go-btn:hover{background:var(–purple);transform:translateY(-1px);}
+.cempty{text-align:center;padding:60px 20px;color:var(–text2);}
+.cempty .ci{font-size:44px;margin-bottom:10px;opacity:.3;}
+
+/* ── CHECKOUT MODAL ── */
+.modal-ov{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:16px;}
+.modal-ov.on{opacity:1;pointer-events:all;}
+.modal{background:var(–bg3);border:1.5px solid var(–border);border-radius:18px;width:100%;max-width:420px;transform:translateY(16px) scale(.97);transition:transform .28s;max-height:90vh;overflow-y:auto;}
+.modal-ov.on .modal{transform:translateY(0) scale(1);}
+.modal-hdr{padding:22px 22px 0;display:flex;justify-content:space-between;align-items:center;}
+.modal-title{font-family:‘Montserrat’,sans-serif;font-size:18px;font-weight:900;}
+.modal-x{background:none;border:none;color:var(–text2);font-size:22px;cursor:pointer;transition:color .2s;}
+.modal-x:hover{color:var(–red);}
+.modal-body{padding:18px 22px 22px;}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.fg label{font-size:10px;font-weight:800;color:var(–text2);letter-spacing:1.5px;text-transform:uppercase;}
+.fg input,.fg textarea{background:var(–bg4);border:1.5px solid var(–border);border-radius:10px;padding:11px 14px;color:var(–text);font-family:‘Nunito’,sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg textarea:focus{border-color:var(–purple);}
+.fg textarea{resize:vertical;min-height:70px;}
+
+.order-sum{background:var(–bg4);border:1.5px solid var(–border);border-radius:10px;padding:13px;margin-bottom:14px;}
+.osm-title{font-size:10px;font-weight:800;color:var(–text2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.osm-item{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:var(–text2);}
+.osm-item span:last-child{color:var(–text);font-weight:700;}
+.osm-tot{display:flex;justify-content:space-between;border-top:1px solid var(–border);margin-top:8px;padding-top:8px;font-family:‘Montserrat’,sans-serif;font-size:16px;font-weight:900;}
+.osm-tot span:last-child{color:var(–purple3);}
+
+.place-btn{width:100%;padding:14px;background:var(–purple2);border:none;border-radius:50px;color:#fff;font-family:‘Nunito’,sans-serif;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:.5px;transition:all .2s;margin-top:4px;}
+.place-btn:hover{background:var(–purple);transform:translateY(-1px);}
+
+/* success */
+.success{text-align:center;padding:32px 16px;}
+.success-ico{font-size:56px;margin-bottom:12px;animation:pop .45s cubic-bezier(.34,1.56,.64,1);}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.success-title{font-family:‘Montserrat’,sans-serif;font-size:22px;font-weight:900;color:var(–green);margin-bottom:6px;}
+.success-sub{color:var(–text2);font-size:13px;line-height:1.7;}
+.success-id{display:inline-block;margin:12px 0;padding:8px 18px;border:1.5px solid rgba(16,185,129,.3);border-radius:8px;font-family:‘Montserrat’,sans-serif;font-size:18px;font-weight:900;color:var(–green);letter-spacing:3px;background:rgba(16,185,129,.07);}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(70px);z-index:999;background:var(–bg4);border:1.5px solid var(–border);border-radius:50px;padding:10px 22px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 28px rgba(0,0,0,.5);transition:transform .3s cubic-bezier(.34,1.3,.64,1);font-size:13px;font-weight:700;white-space:nowrap;max-width:88vw;}
+.toast.on{transform:translateX(-50%) translateY(0);}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(–bg);}
+::-webkit-scrollbar-thumb{background:var(–border);border-radius:2px;}
+
+.spinner-wrap{grid-column:1/-1;display:flex;justify-content:center;padding:60px;}
+.spin{width:36px;height:36px;border-radius:50%;border:3px solid var(–border);border-top-color:var(–purple);animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+</style>
+</head>
+<body>
+
+<!-- Firebase SDK -->
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue, push, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// ══════════════════════════════════════════════
+// 🔥 ВСТАВЬ СЮДА СВОИ ДАННЫЕ FIREBASE
+// Инструкция ниже в странице
+// ══════════════════════════════════════════════
+const firebaseConfig = {
+  apiKey: "AIzaSyAIyS0c_Lg7-zgEsBLI9ZSRvPrn0gPMcQc",
+  authDomain: "xyrekh-shop.firebaseapp.com",
+  databaseURL: "https://xyrekh-shop-default-rtdb.firebaseio.com",
+  projectId: "xyrekh-shop",
+  storageBucket: "xyrekh-shop.firebasestorage.app",
+  messagingSenderId: "562564060825",
+  appId: "1:562564060825:web:d41f493d5374a9e2c04a08"
+};
+
+let db = null;
+let fbReady = false;
+
+try {
+  if(true) {
+    const app = initializeApp(firebaseConfig);
+    db = getDatabase(app);
+    fbReady = true;
+    document.getElementById('fb-notice')?.remove();
+  }
+} catch(e){ console.log('Firebase не подключён, используется localStorage'); }
+
+// Expose to global
+window._fb = { db, ref, onValue, push, set, ready: fbReady };
+window.dispatchEvent(new Event('fb-ready'));
+</script>
+
+<header>
+  <div class="hdr">
+    <div class="logo"><span class="logo-dot"></span>XYREKH SHOP</div>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Корзина <span class="cart-n" id="cart-n">0</span>
+    </button>
+    <div class="search-wrap">
+      <span class="search-ico">🔍</span>
+      <input type="text" placeholder="Поиск товаров..." id="s-inp" oninput="doSearch()">
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">✦ Онлайн Магазин ✦</div>
+    <h1>XYREKH<br><em>SHOP</em></h1>
+    <p class="hero-sub">Лучшие товары по лучшим ценам. Быстрая доставка по всему Кыргызстану.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-n" id="hs-prod">0</span><span class="hero-stat-l">Товаров</span></div>
+      <div class="hero-stat"><span class="hero-stat-n" id="hs-cat">0</span><span class="hero-stat-l">Категорий</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cats-wrap"><div class="cats-scroll" id="cats"></div></div>
+
+<div class="prod-section">
+  <div class="sec-hdr">
+    <div class="sec-title">Каталог</div>
+    <div class="sec-count" id="prod-count"></div>
+  </div>
+  <div class="grid" id="grid"><div class="spinner-wrap"><div class="spin"></div></div></div>
+</div>
+
+<!-- Overlay + Drawer -->
+
+<div class="overlay" id="ov" onclick="closeCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-hdr">
+    <div class="drawer-title">🛒 КОРЗИНА</div>
+    <button class="drawer-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="drawer-items" id="d-items"></div>
+  <div class="drawer-foot" id="d-foot" style="display:none">
+    <div class="cart-tot">
+      <span class="cart-tot-lbl">Итого:</span>
+      <span class="cart-tot-val" id="cart-tot">0 сом</span>
+    </div>
+    <button class="go-btn" onclick="openCheckout()">💳 Оформить заказ</button>
+  </div>
+</div>
+
+<!-- Checkout modal -->
+
+<div class="modal-ov" id="modal-ov">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title">📦 ОФОРМЛЕНИЕ</div>
+      <button class="modal-x" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <div class="order-sum" id="osm"></div>
+      <div class="fg"><label>Ваше имя *</label><input type="text" id="c-name" placeholder="Полное имя..."></div>
+      <div class="fg"><label>Телефон *</label><input type="tel" id="c-phone" placeholder="+996 ..."></div>
+      <div class="fg"><label>Адрес доставки *</label><textarea id="c-addr" placeholder="Город, улица, дом..."></textarea></div>
+      <button class="place-btn" onclick="placeOrder()">🚀 Подтвердить заказ</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span id="t-ico"></span><span id="t-msg"></span></div>
+
+<script>
+// ── DATA ──────────────────────────────────────
+let products = [], cart = [], curCat = '', searchQ = '';
+const SP = 'xyrekh_products', SO = 'xyrekh_orders';
+
+function lsGet(k){ try{return JSON.parse(localStorage.getItem(k))||[];}catch{return[];} }
+function lsSet(k,v){ localStorage.setItem(k,JSON.stringify(v)); }
+
+// ── FIREBASE INIT ──────────────────────────────
+window.addEventListener('fb-ready', () => {
+  const {db, ref, onValue, ready} = window._fb;
+  if(!ready){ loadLocal(); return; }
+
+  onValue(ref(db,'products'), snap => {
+    const data = snap.val();
+    products = data ? Object.entries(data).map(([id,v])=>({...v,_id:id})) : [];
+    renderCats(); renderGrid();
+  });
+});
+
+function loadLocal(){
+  products = lsGet(SP);
+  setInterval(()=>{
+    const f=lsGet(SP);
+    if(JSON.stringify(f)!==JSON.stringify(products)){products=f;renderCats();renderGrid();}
+  },2000);
+  renderCats(); renderGrid();
+}
+
+// Fallback if firebase script fails
+setTimeout(()=>{ if(!window._fb){ loadLocal(); } },3000);
+
+// ── CATEGORIES ────────────────────────────────
+function renderCats(){
+  const cats=[...new Set(products.map(p=>p.cat).filter(Boolean))];
+  document.getElementById('cats').innerHTML=
+    `<div class="cat ${!curCat?'on':''}" onclick="setCat('')">Все</div>`+
+    cats.map(c=>`<div class="cat ${curCat===c?'on':''}" onclick="setCat('${c}')">${c}</div>`).join('');
+  document.getElementById('hs-prod').textContent = products.length;
+  document.getElementById('hs-cat').textContent = cats.length;
+}
+function setCat(c){
+  curCat=c;
+  document.querySelectorAll('.cat').forEach(el=>el.classList.toggle('on',el.textContent===(c||'Все')));
+  renderGrid();
+}
+function doSearch(){ searchQ=document.getElementById('s-inp').value.toLowerCase(); renderGrid(); }
+
+// ── GRID ──────────────────────────────────────
+function renderGrid(){
+  let list = products;
+  if(curCat) list=list.filter(p=>p.cat===curCat);
+  if(searchQ) list=list.filter(p=>(p.name||'').toLowerCase().includes(searchQ)||(p.desc||'').toLowerCase().includes(searchQ));
+
+  document.getElementById('prod-count').textContent = list.length ? list.length+' товаров' : '';
+  const g = document.getElementById('grid');
+  if(!list.length){
+    g.innerHTML=`<div class="empty"><div class="empty-ico">🛍️</div><p>${products.length?'Ничего не найдено.':'Магазин скоро откроется.'}</p></div>`;
+    return;
+  }
+  g.innerHTML = list.map(p=>{
+    const inc=cart.find(c=>c.id===(p._id||p.id)), ns=p.stock<=0;
+    return `<div class="pcard">
+      ${p.isNew?'<div class="new-badge">NEW</div>':''}
+      <div class="pcard-img">${p.img?`<img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">`:'📦'}</div>
+      <div class="pcard-body">
+        <div class="pcard-cat">${p.cat||''}</div>
+        <div class="pcard-name">${p.name}</div>
+        <div class="pcard-desc">${p.desc||'Нет описания'}</div>
+        <div class="pcard-foot">
+          <div>
+            <div class="pcard-price">${Number(p.price).toLocaleString()} <small>сом</small></div>
+            <div class="pcard-stock">${ns?'❌ Нет в наличии':'✅ '+p.stock+' шт'}</div>
+          </div>
+          <button class="add-btn${inc?' in':''}" onclick="addCart('${p._id||p.id}')"${ns?' disabled':''}>${inc?'✓ В корзине':'+ Купить'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── CART ──────────────────────────────────────
+function addCart(id){
+  const p=products.find(x=>(x._id||x.id)==id); if(!p) return;
+  const ex=cart.find(c=>c.id===id);
+  if(ex){if(ex.qty<p.stock)ex.qty++;else{toast('⚠️','Нет в наличии');return;}}
+  else cart.push({id,name:p.name,price:Number(p.price),img:p.img||'',qty:1,stock:p.stock});
+  updN(); renderGrid(); renderDrawer(); toast('🛒',p.name+' добавлен');
+}
+function rmCart(id){cart=cart.filter(c=>c.id!==id);updN();renderGrid();renderDrawer();}
+function setQty(id,d){const it=cart.find(c=>c.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)rmCart(id);else{updN();renderDrawer();}}
+function updN(){document.getElementById('cart-n').textContent=cart.reduce((s,c)=>s+c.qty,0);}
+
+function renderDrawer(){
+  const di=document.getElementById('d-items'), df=document.getElementById('d-foot');
+  if(!cart.length){di.innerHTML='<div class="cempty"><div class="ci">🛍️</div><p>Корзина пуста</p></div>';df.style.display='none';return;}
+  df.style.display='block';
+  const tot=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  di.innerHTML=cart.map(c=>`
+    <div class="citem">
+      <div class="citem-img">${c.img?`<img src="${c.img}" onerror="this.style.display='none'">`:'📦'}</div>
+      <div class="citem-info">
+        <div class="citem-name">${c.name}</div>
+        <div class="citem-price">${(c.price*c.qty).toLocaleString()} сом</div>
+        <div class="citem-ctrl">
+          <div class="qbtn" onclick="setQty('${c.id}',-1)">−</div>
+          <div class="qval">${c.qty}</div>
+          <div class="qbtn" onclick="setQty('${c.id}',1)">+</div>
+        </div>
+      </div>
+      <button class="cdel" onclick="rmCart('${c.id}')">🗑️</button>
+    </div>`).join('');
+  document.getElementById('cart-tot').textContent=tot.toLocaleString()+' сом';
+}
+function openCart(){renderDrawer();document.getElementById('drawer').classList.add('on');document.getElementById('ov').classList.add('on');}
+function closeCart(){document.getElementById('drawer').classList.remove('on');document.getElementById('ov').classList.remove('on');}
+
+// ── CHECKOUT ──────────────────────────────────
+function openCheckout(){
+  if(!cart.length)return; closeCart();
+  const tot=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('osm').innerHTML=
+    '<div class="osm-title">Ваш заказ</div>'+
+    cart.map(c=>`<div class="osm-item"><span>${c.name} ×${c.qty}</span><span>${(c.price*c.qty).toLocaleString()} сом</span></div>`).join('')+
+    `<div class="osm-tot"><span>ИТОГО</span><span>${tot.toLocaleString()} сом</span></div>`;
+  document.getElementById('modal-ov').classList.add('on');
+}
+function closeModal(){document.getElementById('modal-ov').classList.remove('on');}
+
+async function placeOrder(){
+  const name=document.getElementById('c-name').value.trim();
+  const phone=document.getElementById('c-phone').value.trim();
+  const addr=document.getElementById('c-addr').value.trim();
+  if(!name||!phone||!addr){toast('⚠️','Заполните все поля');return;}
+  if(phone.replace(/\D/g,'').length<9){toast('⚠️','Неверный номер');return;}
+
+  const tot=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const oid=Math.floor(Math.random()*90000)+10000;
+  const order={id:oid,name,phone,address:addr,items:cart.map(c=>({id:c.id,name:c.name,qty:c.qty,price:c.price})),total:tot,status:'new',createdAt:new Date().toISOString()};
+
+  const {db,ref,push,ready}=window._fb||{};
+  if(ready && db){ try{ await push(ref(db,'orders'),order); }catch(e){} }
+  else{ const o=lsGet(SO); o.push(order); lsSet(SO,o); }
+
+  document.getElementById('modal-body').innerHTML=`
+    <div class="success">
+      <div class="success-ico">🎉</div>
+      <div class="success-title">ЗАКАЗ ПРИНЯТ!</div>
+      <div class="success-id">#${oid}</div>
+      <div class="success-sub">Спасибо, <strong>${name}</strong>!<br>Свяжемся по номеру <strong>${phone}</strong>.</div>
+      <button class="place-btn" style="margin-top:16px" onclick="closeModal()">✨ Продолжить покупки</button>
+    </div>`;
+  cart=[]; updN(); renderGrid();
+}
+
+// ── TOAST ──────────────────────────────────────
+let tt;
+function toast(ico,msg){
+  clearTimeout(tt);
+  document.getElementById('t-ico').textContent=ico;
+  document.getElementById('t-msg').textContent=msg;
+  const t=document.getElementById('toast');t.classList.add('on');
+  tt=setTimeout(()=>t.classList.remove('on'),2400);
+}
+</script>
+
+</body>
+</html>
